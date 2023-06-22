@@ -189,6 +189,14 @@ def edges(frame, value):
 
 
 def only_face(frame, value):
+    """
+    Function uses neural network to
+    detect all faces on the frame,
+    select the bounding box of first
+    face and crop the frame using this
+    bounding box. Finally, the frame contains
+    only detected face, if the face detected
+    """
     net = cv2.dnn.readNetFromCaffe("deploy.prototxt", "res10_300x300_ssd_iter_140000_fp16.caffemodel")
     # Model parameters
     in_width = 300
@@ -199,20 +207,22 @@ def only_face(frame, value):
     frame_height = frame.shape[0]
     frame_width = frame.shape[1]
 
+    # prepare input
     blob = cv2.dnn.blobFromImage(frame, 1.0, (in_width, in_height), mean, swapRB=False, crop=False)
-
     net.setInput(blob)
+
+    # run model
     detections = net.forward()
-    print(detections)
+
+    # process the output
     for i in range(detections.shape[2]):
         confidence = detections[0, 0, i, 2]
         if confidence > conf_threshold:
-            x_left_bottom = int(detections[0, 0, i, 3] * frame_width)
-            y_left_bottom = int(detections[0, 0, i, 4] * frame_height)
-            x_right_top = int(detections[0, 0, i, 5] * frame_width)
-            y_right_top = int(detections[0, 0, i, 6] * frame_height)
-            print(y_right_top,y_left_bottom,x_right_top,x_left_bottom)
-            return frame[y_left_bottom:y_right_top, x_left_bottom:x_right_top]
+            x_top = int(detections[0, 0, i, 3] * frame_width)
+            y_top = int(detections[0, 0, i, 4] * frame_height)
+            x_bottom = int(detections[0, 0, i, 5] * frame_width)
+            y_bottom = int(detections[0, 0, i, 6] * frame_height)
+            return frame[y_top:y_bottom, x_top:x_bottom]
     return frame
 
 
