@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OpenCV filters for web camera video stream</title>
+    <style>
+        td {
+            vertical-align: top;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tbody>
+        <tr>
+            <td><img src="./frame.jpg"/><br/></td>
+            <td>
+                <h2>Filters</h2>
+                <strong>Color channels</strong><br/>
+                <table>
+                    <tbody>
+                    <tr>
+                        <td colspan="2">
+                            <input type="checkbox" id="r" onchange="applyFilters()"/>&nbsp;Red&nbsp;
+                            <input type="checkbox" id="g" onchange="applyFilters()"/>&nbsp;Green&nbsp;
+                            <input type="checkbox" id="b" onchange="applyFilters()"/>&nbsp;Blue<br/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" id="blur" onchange="applyFilters()"/><strong>Blur</strong>
+                        </td>
+                        <td>
+                            <input type="range" id="blur_value" min="0" max="100" value="0" onchange="applyFilters()">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" id="binary" onchange="applyFilters()"/><strong>Binary</strong>
+                        </td>
+                        <td>
+                            <input type="range" id="binary_value" min="0" max="255" value="0" onchange="applyFilters()">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" id="brightness" onchange="applyFilters()"/><strong>Brightness</strong>
+                        </td>
+                        <td>
+                            <input type="range" id="brightness_value" min="-100" max="100" value="0" onchange="applyFilters()"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" id="contrast" onchange="applyFilters()"/><strong>Contrast</strong>
+                        </td>
+                        <td>
+                            <input type="range" id="contrast_value" min="0" max="2" value="1" step="0.01" onchange="applyFilters()"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" id="edges" onchange="applyFilters()"/><strong>Edges</strong>
+                        </td>
+                        <td>
+                            <input type="checkbox" id="only_face" onchange="applyFilters()"/><strong>Only face</strong>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <script src="index.js"></script>
+</body>
+</html>
