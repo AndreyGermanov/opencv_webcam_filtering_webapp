@@ -218,11 +218,11 @@ def only_face(frame, value):
     for i in range(detections.shape[2]):
         confidence = detections[0, 0, i, 2]
         if confidence > conf_threshold:
-            x_top = int(detections[0, 0, i, 3] * frame_width)
+            x_left = int(detections[0, 0, i, 3] * frame_width)
             y_top = int(detections[0, 0, i, 4] * frame_height)
-            x_bottom = int(detections[0, 0, i, 5] * frame_width)
+            x_right = int(detections[0, 0, i, 5] * frame_width)
             y_bottom = int(detections[0, 0, i, 6] * frame_height)
-            return frame[y_top:y_bottom, x_top:x_bottom]
+            return frame[y_top:y_bottom, x_left:x_right]
     return frame
 
 
