@@ -5,7 +5,7 @@ See demo video: https://youtu.be/aVH0i-DGxXI
 
 ## Install
 
-* Clone this repository: `git clone git@github.com:AndreyGermanov/yolov8_onnx_python.git`
+* Clone this repository: `git clone git@github.com:AndreyGermanov/opencv_webcam_filtering_webapp`
 * Go to the root of cloned repository
 * Install dependencies by running `pip3 install -r requirements.txt`
 
